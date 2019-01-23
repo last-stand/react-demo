@@ -4,7 +4,7 @@ class UserList extends React.Component{
   render() {
     let chunkedUsers = splitIntoHalf(this.props.users);
     return (
-        <div class='parent'>
+        <div className='parent'>
           <Table userList={chunkedUsers[0]}/>
           <Table userList={chunkedUsers[1]}/>
         </div>
@@ -14,10 +14,10 @@ class UserList extends React.Component{
 
 function Table(props) {
   return (
-    <div class="div-table">
+    <div className="div-table">
       <TableHeader />
       {props.userList.map(user => (
-        <UserRecord user={user}/>
+        <UserRecord key={user.login} user={user}/>
       ))}
     </div>
   );
@@ -25,18 +25,18 @@ function Table(props) {
 
 function TableHeader() {
   return (
-    <div class="div-table-row div-table-header">
-      <div  class="div-table-col">Name</div>
-      <div  class="div-table-col">UserId</div>
+    <div className="div-table-row div-table-header">
+      <div  className="div-table-col">Name</div>
+      <div  className="div-table-col">UserId</div>
     </div>
   );
 }
 
 function UserRecord(props) {
   return (
-    <div class="div-table-row">
-      <div class="div-table-col">{props.user.firstname} {props.user.lastname}</div>
-      <div class="div-table-col">{props.user.login}</div>
+    <div className="div-table-row">
+      <div className="div-table-col">{props.user.firstname} {props.user.lastname}</div>
+      <div className="div-table-col">{props.user.login}</div>
     </div>
   );
 }
@@ -44,8 +44,9 @@ function UserRecord(props) {
 function splitIntoHalf(array){
   let half_length = Math.ceil(array.length / 2);
   let results = [];
-  let left = results.push(array.splice(0, half_length));
-  let right = results.push(array);
+  let left = array.splice(0, half_length);
+  let right = array;
+  results.push(left, right);
   return results;
 }
 
