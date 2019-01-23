@@ -1,15 +1,13 @@
 import React from 'react';
 
-class UserList extends React.Component{
-  render() {
-    let chunkedUsers = splitIntoHalf(this.props.users);
-    return (
-        <div className='parent'>
-          <Table userList={chunkedUsers[0]}/>
-          <Table userList={chunkedUsers[1]}/>
-        </div>
-    );
-  }
+function UserList(props) {
+  let chunkedUsers = splitIntoHalf(props.users);
+  return (
+    <div className='parent'>
+      <Table userList={chunkedUsers[0]}/>
+      <Table userList={chunkedUsers[1]}/>
+    </div>
+  );
 }
 
 function Table(props) {
